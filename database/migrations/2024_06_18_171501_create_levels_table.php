@@ -13,6 +13,15 @@ class CreateLevelsTable extends Migration
             $table->string('name')->unique(); // Daisy, Brownie, Junior
             $table->timestamps();
         });
+
+        DB::table('levels')->insert([
+            ['name' => 'Daisy'],
+            ['name' => 'Brownie'],
+            ['name' => 'Junior'],
+            ['name' => 'Cadette'],
+            ['name' => 'Senior'],
+            ['name' => 'Ambassador'],
+        ]);
     }
 
     public function down()
