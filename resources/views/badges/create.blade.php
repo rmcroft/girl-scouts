@@ -34,39 +34,39 @@
                             </select>
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <x-input-label for="name" :value="__('Badge Name')" />
-                            <x-text-input id="name" name="name" type="text" class="mt-1 block" required autofocus autocomplete="name" />
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-100" required autofocus autocomplete="name" />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <x-input-label for="step1" :value="__('Step 1')" />
-                            <x-text-input id="step1" name="step1" type="text" class="mt-1 block" required autofocus />
+                            <x-text-input id="step1" name="step1" type="text" class="mt-1 block w-100" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('step1')" />
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <x-input-label for="step2" :value="__('Step 2')" />
-                            <x-text-input id="step2" name="step2" type="text" class="mt-1 block" required autofocus />
+                            <x-text-input id="step2" name="step2" type="text" class="mt-1 block w-100" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('step2')" />
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <x-input-label for="step3" :value="__('Step 3')" />
-                            <x-text-input id="step3" name="step3" type="text" class="mt-1 block" required autofocus />
+                            <x-text-input id="step3" name="step3" type="text" class="mt-1 block w-100" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('step3')" />
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <x-input-label for="step4" :value="__('Step 4')" />
-                            <x-text-input id="step4" name="step4" type="text" class="mt-1 block" required autofocus />
+                            <x-text-input id="step4" name="step4" type="text" class="mt-1 block w-100" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('step4')" />
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <x-input-label for="step5" :value="__('Step 5')" />
-                            <x-text-input id="step5" name="step5" type="text" class="mt-1 block" required autofocus />
+                            <x-text-input id="step5" name="step5" type="text" class="mt-1 block w-100" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('step5')" />
                         </div>
 
