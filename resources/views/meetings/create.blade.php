@@ -24,23 +24,25 @@
 
                     <form action="{{ route('meetings.store') }}" method="POST">
                         @csrf
-                        <div>
+                        <div class="form-group">
                             <x-input-label for="title" :value="__('Meeting Title')" />
-                            <x-text-input id="title" name="title" type="text" class="mt-1 block" required autofocus autocomplete="name" />
+                            <x-text-input id="title" name="title" type="text" class="mt-1 block w-100" required autofocus autocomplete="name" />
                             <x-input-error class="mt-2" :messages="$errors->get('title')" />
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <x-input-label for="date" :value="__('Date')" />
                             <x-text-input id="date" name="date" type="date" class="mt-1 block" required/>
                             <x-input-error class="mt-2" :messages="$errors->get('date')" />
                         </div>
 
                         <ul class="nav nav-tabs" role="tablist">
+                            @php $firstActiveSet = false; @endphp
                             @foreach ($levels as $level)
-                                @if ($level->badges->isNotEmpty())
+                                @if ($level->badges->isNotEmpty() || !$firstActiveSet)
                                     <li class="nav-item">
-                                        <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab" href="#level_{{ $level->id }}" role="tab">{{ $level->name }}</a>
+                                        <a class="nav-link {{ !$firstActiveSet ? 'active' : '' }}" data-toggle="tab" href="#level_{{ $level->id }}" role="tab">{{ $level->name }}</a>
+                                        @php $firstActiveSet = true; @endphp
                                     </li>
                                 @endif
                             @endforeach
