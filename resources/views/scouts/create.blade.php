@@ -41,7 +41,7 @@
                         </div>
 
                         <div>
-                            <x-input-label for="level_id" :value="__('Lavel')" />
+                            <x-input-label for="level_id" :value="__('Level')" />
                             <select id="level_id" name="level_id" class="form-control" required>
                                 @foreach ($levels as $level)
                                     <option value="{{ $level->id }}">{{ $level->name }}</option>
