@@ -17,15 +17,26 @@ class ScoutController extends Controller
 
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'birth_date' => 'required|date',
             'level_id' => 'required|exists:levels,id',
         ]);
 
-        $scout = Scout::create($request->all());
+        $id = $request->input('id');
 
-        return redirect()->route('scouts.create')->with('success', 'Scout created successfully!');
+        if ($id == '') {
+            $scout = Scout::create($request->all());
+            $verb = 'created';
+        } else {
+            $scout = Scout::find($id);
+            $scout->update($request->all());
+            $verb = 'updated';
+        }
+
+        
+        return redirect()->route('scouts.index')->with('success', "Scout $verb successfully!");
     }
 
     public function index()
@@ -39,7 +50,9 @@ class ScoutController extends Controller
     {
 
         $scout = Scout::find($id);
+
+        $levels = Level::all(); // Retrieve all levels for dropdown
         
-        return view('scouts.manage', compact('scout'));
+        return view('scouts.create', compact('levels', 'scout'));
     }
 }

@@ -22,6 +22,11 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         @if ($scouts->isEmpty())
                             <p>No scouts found.</p>
                         @else
@@ -32,6 +37,8 @@
                                         <th scope="col" class="px-6 py-3">Name</th>
                                         <th scope="col" class="px-6 py-3">Birth Date</th>
                                         <th scope="col" class="px-6 py-3">Level</th>
+                                        <th scope="col">
+                                        <th scope="col">
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,6 +54,14 @@
 
                                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $scout->level->name }}
+                                            </td>
+
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <a href="{{ route('scouts.manage', ['id'=>$scout->id]) }}" class="btn btn-sm btn-primary">
+                                                    <button>
+                                                        Manage Scout
+                                                    </button>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

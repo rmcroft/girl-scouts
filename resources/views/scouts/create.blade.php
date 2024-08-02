@@ -30,13 +30,13 @@
 
                         <div>
                             <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" name="name" type="text" class="mt-1 block" required autofocus autocomplete="name" />
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block" required autofocus autocomplete="name" value="{{ isset($scout) ? $scout->name : ''}}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
                         <div>
                             <x-input-label for="birth_date" :value="__('Birth Date')" />
-                            <x-text-input id="birth_date" name="birth_date" type="date" class="mt-1 block" required/>
+                            <x-text-input id="birth_date" name="birth_date" type="date" class="mt-1 block" required value="{{ isset($scout) ? $scout->birth_date : ''}}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('birth_date')" />
                         </div>
 
@@ -44,13 +44,16 @@
                             <x-input-label for="level_id" :value="__('Level')" />
                             <select id="level_id" name="level_id" class="form-control" required>
                                 @foreach ($levels as $level)
-                                    <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                    <option value="{{ $level->id }}" {{ isset($scout) && $scout->level->id == $level->id ? 'selected' : ''}}>{{ $level->name }}</option>
                                 @endforeach
                             </select>
                             <x-input-error class="mt-2" :messages="$errors->get('level')" />
                         </div>
+
+                        <input type="hidden" name="id" value="{{isset($scout) ? $scout->id : ''}}">
+
                         <br>
-                        <x-primary-button>{{ __('Create Scout') }}</x-primary-button>
+                        <x-primary-button>{{ isset($scout) ? __('Update Scout') : __('Create Scout') }}</x-primary-button>
                     </form>
                 </div>
             </div>
