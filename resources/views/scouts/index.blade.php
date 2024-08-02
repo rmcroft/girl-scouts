@@ -6,7 +6,7 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">{{ __('List of Scouts') }}</h1>
-                <a href="{{ route('scouts.create')  }}" class="btn btn-primary">
+                <a href="{{ route('scouts.create')  }}">
                     <x-primary-button>
                         {{ __('Add Scout') }}
                     </x-primary-button>
@@ -57,10 +57,10 @@
                                             </td>
 
                                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <a href="{{ route('scouts.manage', ['id'=>$scout->id]) }}" class="btn btn-sm btn-primary">
-                                                    <button>
+                                                <a href="{{ route('scouts.manage', ['id'=>$scout->id]) }}">
+                                                    <x-primary-button>
                                                         Manage Scout
-                                                    </button>
+                                                    </x-primary-button>
                                                 </a>
                                             </td>
                                         </tr>

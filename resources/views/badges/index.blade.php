@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">{{ __('List of Badges') }}</h1>
-                <a href="{{ route('badges.create')  }}" class="btn btn-primary">
+                <a href="{{ route('badges.create')  }}">
                     <x-primary-button>
                         {{ __('Add Badge') }}
                     </x-primary-button>
