@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">{{ __('Create a new Meeting') }}</h1>
-                <a href="{{ route('meetings.index')  }}" class="btn btn-primary">
+                <a href="{{ route('meetings.index')  }}">
                     <x-primary-button>
                         {{ __('Vew All Meeting') }}
                     </x-primary-button>

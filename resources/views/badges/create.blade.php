@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">{{ __('Create a new Badge') }}</h1>
-                <a href="{{ route('badges.index')  }}" class="btn btn-primary">
+                <a href="{{ route('badges.index')  }}">
                     <x-primary-button>
                         {{ __('Vew All Badges') }}
                     </x-primary-button>
@@ -29,50 +29,50 @@
                             <label for="level_id">Select Level</label>
                             <select class="form-control" id="level_id" name="level_id" required>
                                 @foreach ($levels as $level)
-                                    <option value="{{ $level->id }}" {{ old('level_id') == $level->id ? 'selected' : '' }}>{{ $level->name }}</option>
+                                    <option value="{{ $level->id }}" {{ isset($badges) && $badges->level->id == $level->id ? 'selected' : ''}}>{{ $level->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <x-input-label for="name" :value="__('Badge Name')" />
-                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-100" required autofocus autocomplete="name" />
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-100" required autofocus autocomplete="name" value="{{ isset($badges) ? $badges->name : ''}}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
                         <div class="form-group">
                             <x-input-label for="step1" :value="__('Step 1')" />
-                            <x-text-input id="step1" name="step1" type="text" class="mt-1 block w-100" required autofocus />
+                            <x-text-input id="step1" name="step1" type="text" class="mt-1 block w-100" required autofocus value="{{ isset($badges) ? $badges->step1 : ''}}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('step1')" />
                         </div>
 
                         <div class="form-group">
                             <x-input-label for="step2" :value="__('Step 2')" />
-                            <x-text-input id="step2" name="step2" type="text" class="mt-1 block w-100" required autofocus />
+                            <x-text-input id="step2" name="step2" type="text" class="mt-1 block w-100" required autofocus value="{{ isset($badges) ? $badges->step2 : ''}}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('step2')" />
                         </div>
 
                         <div class="form-group">
                             <x-input-label for="step3" :value="__('Step 3')" />
-                            <x-text-input id="step3" name="step3" type="text" class="mt-1 block w-100" required autofocus />
+                            <x-text-input id="step3" name="step3" type="text" class="mt-1 block w-100" required autofocus value="{{ isset($badges) ? $badges->step3 : ''}}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('step3')" />
                         </div>
 
                         <div class="form-group">
                             <x-input-label for="step4" :value="__('Step 4')" />
-                            <x-text-input id="step4" name="step4" type="text" class="mt-1 block w-100" required autofocus />
+                            <x-text-input id="step4" name="step4" type="text" class="mt-1 block w-100" required autofocus value="{{ isset($badges) ? $badges->step4 : ''}}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('step4')" />
                         </div>
 
                         <div class="form-group">
                             <x-input-label for="step5" :value="__('Step 5')" />
-                            <x-text-input id="step5" name="step5" type="text" class="mt-1 block w-100" required autofocus />
+                            <x-text-input id="step5" name="step5" type="text" class="mt-1 block w-100" required autofocus value="{{ isset($badges) ? $badges->step5 : ''}}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('step5')" />
                         </div>
 
-
+                        <input type="hidden" name="id" value="{{isset($badges) ? $badges->id : ''}}">
                         <br>
-                        <x-primary-button>{{ __('Create Badge') }}</x-primary-button>
+                        <x-primary-button>{{ isset($badges) ? __('Update Badge') : __('Create Badge') }}</x-primary-button>
                     </form>
                 </div>
             </div>

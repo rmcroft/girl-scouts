@@ -17,6 +17,11 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="card-body">
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @endif
                         @if ($badges->isEmpty())
                             <p>No badges found.</p>
                         @else
@@ -62,6 +67,14 @@
 
                                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                 {{ $badge->step5 }}
+                                            </td>
+
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <a href="{{ route('badges.manage', ['id'=>$badge->id]) }}">
+                                                    <x-primary-button>
+                                                        {{ __('Edit') }}
+                                                    </x-primary-button>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

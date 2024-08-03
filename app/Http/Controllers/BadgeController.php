@@ -27,6 +27,7 @@ class BadgeController extends Controller
             'step5' => 'required|string|max:255',
         ]);
 
+        /*
         $badge = Badge::create([
             'name' => $request->input('name'),
             'level_id' => $request->input('level_id'),
@@ -36,9 +37,25 @@ class BadgeController extends Controller
             'step4' => $request->input('step4'),
             'step5' => $request->input('step5'),
         ]);
+        */
+
+        
+
+        $id = $request->input('id');
+
+        if ($id == '') {
+            $badges = Badge::create($request->all());
+            $verb = 'created';
+        } else {
+            $badges= Badge::find($id);
+            $badges->update($request->all());
+            $verb = 'updated';
+        }
+
+        
+        return redirect()->route('badges.index')->with('success', "Badge $verb successfully!");
 
         // Optionally, you can redirect to a view or route after creating the badge
-        return redirect()->route('badges.create')->with('success', 'Badge created successfully!');
     }
 
     public function index()
@@ -46,5 +63,14 @@ class BadgeController extends Controller
         $badges = Badge::all(); // Retrieve all badges
 
         return view('badges.index', compact('badges'));
+    }
+
+    public function manage($id)
+    {
+        $badges = Badge::find($id);
+
+        $levels = Level::all(); // Retrieve all levels for dropdown
+        
+        return view('badges.create', compact('levels', 'badges'));
     }
 }

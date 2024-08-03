@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/badges/create', [BadgeController::class, 'create'])->name('badges.create');
     Route::post('/badges', [BadgeController::class, 'store'])->name('badges.store');
     Route::get('/badges', [BadgeController::class, 'index'])->name('badges.index');
+    Route::get('/badges/{id}', [BadgeController::class, 'manage'])->name('badges.manage');
+
 
     Route::get('/meetings', [MeetingController::class, 'index'])->name('meetings.index');
     Route::get('/meetings/create', [MeetingController::class, 'create'])->name('meetings.create');
