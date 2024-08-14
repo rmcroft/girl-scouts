@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Scout;
 use App\Models\Level;
+use App\Models\BadgeProgress;
 
 class ScoutController extends Controller
 {
@@ -52,7 +53,9 @@ class ScoutController extends Controller
         $scout = Scout::find($id);
 
         $levels = Level::all(); // Retrieve all levels for dropdown
+
+        $progresses = BadgeProgress::whereBelongsTo($scout)->get();
         
-        return view('scouts.create', compact('levels', 'scout'));
+        return view('scouts.create', compact('levels', 'scout'), compact('progresses'));
     }
 }

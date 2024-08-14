@@ -8,24 +8,36 @@ use Illuminate\Http\Request;
 
 class BadgeProgressController extends Controller
 {
-    public function markStepCompleted(Request $request, $scoutId, $stepId)
+    public function manage($id)
     {
+        $progress = BadgeProgress::find($id);
+        
+        return view('badgeprogress.manage', compact('progress'));
+    }
+    
+    public function store(Request $request, $id)
+    {
+        error_log(implode(" ", $request->all()));
+        
         $request->validate([
-            'completed' => 'required|boolean',
+            'step1_complete' => 'int|min:0|max:1',
+            'step2_complete' => 'int|min:0|max:1',
+            'step3_complete' => 'int|min:0|max:1',
+            'step4_complete' => 'int|min:0|max:1',
+            'step5_complete' => 'int|min:0|max:1',
         ]);
 
-        $scout = Scout::findOrFail($scoutId);
-        $step = Step::findOrFail($stepId);
+        $progress = BadgeProgress::find($id);
 
-        // Find existing progress or create new one
-        $progress = BadgeProgress::firstOrNew([
-            'scout_id' => $scout->id,
-            'step_id' => $step->id,
-        ]);
+        $progress->step1_complete = $request->input('step1_complete') == 1 ? 1:0;
+        $progress->step2_complete = $request->input('step2_complete') == 1 ? 1:0;
+        $progress->step3_complete = $request->input('step3_complete') == 1 ? 1:0;
+        $progress->step4_complete = $request->input('step4_complete') == 1 ? 1:0;
+        $progress->step5_complete = $request->input('step5_complete') == 1 ? 1:0;
 
-        $progress->is_completed = $request->input('completed');
+        
         $progress->save();
 
-        return redirect()->back()->with('success', 'Step progress updated successfully!');
+        return redirect()->route('scouts.manage', ['id'=>$progress->scout->id])->with('success', "Badge progress updated successfully!");
     }
 }

@@ -54,6 +54,9 @@
 
                                 @if ($level->badges->isNotEmpty())
                                     <div id="level_{{ $level->id }}" class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" role="tabpanel">
+                                        <header>
+                                            Badges
+                                        </header>
 
                                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -71,38 +74,70 @@
                                                 @foreach ($level->badges as $badge)
                                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 
-                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                             {{ $badge->name }}
                                                         </td>
                 
-                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                             <input class="form-check-input" type="checkbox" name="{{ $badge->id }}_step_1" id="{{ $badge->id }}_step_1" value="">
                                                             {{ $badge->step1 }}
                                                         </td>
                 
-                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                             <input class="form-check-input" type="checkbox" name="{{ $badge->id }}_step_2" id="{{ $badge->id }}_step_2" value="">
                                                             {{ $badge->step2 }}
                                                         </td>
                 
-                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                             <input class="form-check-input" type="checkbox" name="{{ $badge->id }}_step_3" id="{{ $badge->id }}_step_3" value="">
                                                             {{ $badge->step3 }}
                                                         </td>
                 
-                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                             <input class="form-check-input" type="checkbox" name="{{ $badge->id }}_step_4" id="{{ $badge->id }}_step_4" value="">
                                                             {{ $badge->step4 }}
                                                         </td>
                 
-                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                             <input class="form-check-input" type="checkbox" name="{{ $badge->id }}_step_5" id="{{ $badge->id }}_step_5" value="">
                                                             {{ $badge->step5 }}
                                                         </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
+
+
+                                            
                                         </table>
+
+                                        <header>
+                                            Scouts
+                                        </header>
+
+                                        <table>
+                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                <tr >
+                                                    <th scope="col" class="px-6 py-3">Name</th>
+                                                    <th scope="col" class="px-6 py-3">Present?</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($level->scouts as $scout)
+                                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+
+                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                            {{ $scout->name }}
+                                                        </td>
+                                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                            <input class="form-check-input" type="checkbox" id="{{ $scout->id }}" value = "">
+                                                                &nbsp;
+                                                            </input>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+
                                     </div>
                                 @endif
                                     

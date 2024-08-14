@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\BadgeProgressController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/badges', [BadgeController::class, 'index'])->name('badges.index');
     Route::get('/badges/{id}', [BadgeController::class, 'manage'])->name('badges.manage');
 
+    Route::get('/progress/{id}', [BadgeProgressController::class, 'manage'])->name('badgeprogress.manage');
+    Route::post('/progress/{id}', [BadgeProgressController::class, 'store'])->name('badgeprogress.store');
 
     Route::get('/meetings', [MeetingController::class, 'index'])->name('meetings.index');
     Route::get('/meetings/create', [MeetingController::class, 'create'])->name('meetings.create');

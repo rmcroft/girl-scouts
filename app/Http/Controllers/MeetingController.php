@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Meeting;
 use App\Models\Badge;
 use App\Models\Level;
+use App\Models\Scout;
 
 class MeetingController extends Controller
 {
@@ -21,6 +22,8 @@ class MeetingController extends Controller
         $badges = Badge::all();
 
         $levels = Level::with('badges')->get();
+
+        $scouts = Scout::all();
 
 
         return view('meetings.create', compact('badges', 'levels'));

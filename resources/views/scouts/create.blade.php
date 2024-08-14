@@ -52,8 +52,91 @@
 
                         <input type="hidden" name="id" value="{{isset($scout) ? $scout->id : ''}}">
 
+                        <div>
+                            <x-input-label>
+                                Badges
+                            </x-input-label>
+                        </div>
+
+                        @if ($progresses->isEmpty())
+                            <p>No badges found.</p>
+                        @else
+
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">Level</th>
+                                        <th scope="col" class="px-6 py-3">Name</th>
+                                        <th scope="col" class="px-6 py-3">Step 1</th>
+                                        <th scope="col" class="px-6 py-3">Step 2</th>
+                                        <th scope="col" class="px-6 py-3">Step 3</th>
+                                        <th scope="col" class="px-6 py-3">Step 4</th>
+                                        <th scope="col" class="px-6 py-3">Step 5</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($progresses as $progress)
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                {{ $progress->badge->level->name }}
+                                            </td>
+
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                {{ $progress->badge->name }}
+                                            </td>
+
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                @if ($progress->step1_complete)
+                                                    <span class="badge badge-success">✓</span>
+                                                @endif
+                                                {{ $progress->badge->step1 }}
+                                            </td>
+
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                @if ($progress->step2_complete)
+                                                    <span class="badge badge-success">✓</span>
+                                                @endif
+                                                {{ $progress->badge->step2 }}
+                                            </td>
+
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                @if ($progress->step3_complete)
+                                                    <span class="badge badge-success">✓</span>
+                                                @endif
+                                                {{ $progress->badge->step3 }}
+                                            </td>
+
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                @if ($progress->step4_complete)
+                                                    <span class="badge badge-success">✓</span>
+                                                @endif
+                                                {{ $progress->badge->step4 }}
+                                            </td>
+
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                @if ($progress->step5_complete)
+                                                    <span class="badge badge-success">✓</span>
+                                                @endif
+                                                {{ $progress->badge->step5 }}
+                                            </td>
+
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                                <a href="{{ route('badgeprogress.manage', ['id' => $progress->id])  }}">
+                                                    <x-secondary-button>
+                                                        {{ __('Edit Progress') }}
+                                                    </x-secondary-button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+
                         <br>
-                        <x-primary-button>{{ isset($scout) ? __('Update Scout') : __('Create Scout') }}</x-primary-button>
+                        <a href="{{ route('scouts.store') }}">
+                            <x-primary-button>{{ isset($scout) ? __('Update Scout') : __('Create Scout') }}</x-primary-button>
+                        </a>
                     </form>
                 </div>
             </div>
